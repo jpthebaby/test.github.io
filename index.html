@@ -3,110 +3,486 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Pages Site</title>
-    <!-- Link to a simple CSS file (optional) -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Favicon (optional) -->
-    <link rel="icon" href="https://github.githubassets.com/favicon.ico" type="image/x-icon">
-    <!-- Open Graph tags for social sharing (optional) -->
-    <meta property="og:title" content="My GitHub Pages Site">
-    <meta property="og:description" content="Welcome to my website hosted on GitHub Pages">
-    <meta property="og:image" content="https://avatars.githubusercontent.com/u/YOUR_PROFILE_ID">
+    <title>JPTheHero - Modding Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Basic CSS included directly in HTML for simplicity */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00eeff;
+            --primary-dark: #00a2ff;
+            --secondary: #ff00d4;
+            --dark-bg: #0a0a14;
+            --darker-bg: #05050a;
+            --card-bg: rgba(20, 20, 40, 0.7);
+            --text: #f0f0ff;
+            --text-secondary: #b0b0ff;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #24292e;
-            background-color: #f6f8fa;
+            font-family: 'Exo 2', sans-serif;
+            background: var(--darker-bg);
+            color: var(--text);
+            overflow-x: hidden;
+            min-height: 100vh;
         }
-        header {
-            border-bottom: 1px solid #e1e4e8;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+
+        /* Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 174, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 212, 0.1) 0%, transparent 40%),
+                linear-gradient(var(--darker-bg), var(--dark-bg));
         }
-        h1 {
-            color: #0366d6;
-        }
-        .container {
-            background-color: #fff;
-            border-radius: 6px;
-            border: 1px solid #e1e4e8;
-            padding: 30px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-        footer {
-            margin-top: 40px;
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            color: #6a737d;
-            font-size: 14px;
-            border-top: 1px solid #e1e4e8;
-            padding-top: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
         }
-        a {
-            color: #0366d6;
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.2;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, 50px) rotate(90deg); }
+            50% { transform: translate(0, 100px) rotate(180deg); }
+            75% { transform: translate(-100px, 50px) rotate(270deg); }
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(0, 238, 255, 0.3);
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+
+        .youtube-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #ff0000;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
             text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
         }
-        a:hover {
-            text-decoration: underline;
+
+        .youtube-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 35px rgba(255, 0, 0, 0.6);
+            background: #ff3333;
         }
-        code {
-            background-color: #f6f8fa;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-            font-size: 0.9em;
+
+        /* Mods Showcase Section */
+        .mods-showcase {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .mods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .mod-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 238, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .mod-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(0, 238, 255, 0.2);
+        }
+
+        .mod-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(45deg, #0011ff, #ff00d4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .mod-content {
+            padding: 1.8rem;
+        }
+
+        .mod-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
+
+        .mod-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .mod-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: rgba(0, 238, 255, 0.1);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 238, 255, 0.3);
+        }
+
+        .mod-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .mod-link {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .mod-link:hover {
+            background: rgba(0, 238, 255, 0.15);
+            border-color: var(--primary);
+        }
+
+        /* Channel Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin: 5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            min-width: 200px;
+            border: 1px solid rgba(0, 238, 255, 0.1);
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-bg);
+            color: var(--primary);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 238, 255, 0.15);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .hero h2 { font-size: 1.4rem; }
+            .mods-grid { grid-template-columns: 1fr; }
+            .stats { gap: 2rem; }
+            .stat-box { min-width: 150px; padding: 1.5rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Welcome to My GitHub Pages Site</h1>
-            <p>This is a simple homepage for your GitHub Pages website.</p>
-        </header>
+    <!-- Animated Background -->
+    <div class="bg-animation"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>JPTHERO</h1>
+        <h2>Game Modding Creator & YouTube Content Specialist</h2>
+        <p style="font-size: 1.3rem; max-width: 800px; margin-bottom: 1rem;">
+            Showcasing the most innovative game modifications, visual overhauls, and gameplay enhancements.
+            Transforming gaming experiences through creative modding.
+        </p>
         
-        <main>
-            <section>
-                <h2>About This Site</h2>
-                <p>This site is hosted for free using <strong>GitHub Pages</strong>. You can customize it by editing this <code>index.html</code> file in your repository.</p>
-                
-                <h2>Next Steps</h2>
-                <ul>
-                    <li>Edit this HTML file to add your own content</li>
-                    <li>Add more HTML pages in your repository</li>
-                    <li>Enable GitHub Pages in your repository Settings</li>
-                    <li>Add a custom domain (optional)</li>
-                    <li>Use Jekyll for blogging or documentation (optional)</li>
-                </ul>
-                
-                <h2>Quick Links</h2>
-                <p>
-                    <a href="https://docs.github.com/en/pages" target="_blank">GitHub Pages Documentation</a> |
-                    <a href="https://pages.github.com/" target="_blank">GitHub Pages Official Site</a>
-                </p>
-            </section>
-        </main>
+        <a href="https://www.youtube.com/@jpthehero" target="_blank" class="youtube-btn">
+            <i class="fab fa-youtube"></i> Visit My YouTube Channel
+        </a>
+    </section>
+
+    <!-- Featured Mods Section -->
+    <section class="mods-showcase">
+        <h2 class="section-title">Featured Mods</h2>
         
-        <footer>
-            <p>Last updated: <span id="current-date"></span></p>
-            <p>Hosted on GitHub Pages</p>
-        </footer>
-    </div>
+        <div class="mods-grid">
+            <!-- Mod 1 -->
+            <div class="mod-card">
+                <div class="mod-image">
+                    <i class="fas fa-dragon"></i>
+                </div>
+                <div class="mod-content">
+                    <h3 class="mod-title">FFXVI Visual Overhaul</h3>
+                    <p class="mod-desc">
+                        Complete graphical enhancement mod for FINAL FANTASY XVI. 
+                        4K textures, improved lighting, and character model upgrades.
+                    </p>
+                    <div class="mod-tags">
+                        <span class="tag">Graphics</span>
+                        <span class="tag">HD Texture</span>
+                        <span class="tag">Visuals</span>
+                    </div>
+                    <div class="mod-links">
+                        <a href="#" class="mod-link">Video Showcase</a>
+                        <a href="#" class="mod-link">Download</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mod 2 -->
+            <div class="mod-card">
+                <div class="mod-image">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="mod-content">
+                    <h3 class="mod-title">Gameplay Mechanics Redux</h3>
+                    <p class="mod-desc">
+                        Overhaul of combat systems and game mechanics. 
+                        New abilities, rebalanced enemies, and enhanced AI behavior.
+                    </p>
+                    <div class="mod-tags">
+                        <span class="tag">Gameplay</span>
+                        <span class="tag">Combat</span>
+                        <span class="tag">AI</span>
+                    </div>
+                    <div class="mod-links">
+                        <a href="#" class="mod-link">Video Showcase</a>
+                        <a href="#" class="mod-link">Download</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mod 3 -->
+            <div class="mod-card">
+                <div class="mod-image">
+                    <i class="fas fa-user-ninja"></i>
+                </div>
+                <div class="mod-content">
+                    <h3 class="mod-title">Character Customization Suite</h3>
+                    <p class="mod-desc">
+                        Extensive character customization with new outfits, 
+                        hairstyles, armor sets, and appearance options.
+                    </p>
+                    <div class="mod-tags">
+                        <span class="tag">Characters</span>
+                        <span class="tag">Customization</span>
+                        <span class="tag">Cosmetics</span>
+                    </div>
+                    <div class="mod-links">
+                        <a href="#" class="mod-link">Video Showcase</a>
+                        <a href="#" class="mod-link">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Channel Stats -->
+    <section class="mods-showcase">
+        <h2 class="section-title">Channel Impact</h2>
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Mods Created</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">100K+</div>
+                <div class="stat-label">Total Views</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">2K+</div>
+                <div class="stat-label">Community Members</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Games Modded</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <h3 style="font-family: 'Orbitron'; margin-bottom: 1rem;">Connect With Me</h3>
+        <div class="social-links">
+            <a href="https://www.youtube.com/@jpthehero" target="_blank" class="social-icon">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" class="social-icon">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="#" class="social-icon">
+                <i class="fab fa-discord"></i>
+            </a>
+            <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+        <p style="color: var(--text-secondary); margin-top: 2rem;">
+            © 2023 JPTheHero Modding Portfolio. All game content is property of their respective owners.
+        </p>
+        <p style="margin-top: 0.5rem;">
+            <a href="#" style="color: var(--primary); text-decoration: none;">Privacy Policy</a> | 
+            <a href="#" style="color: var(--primary); text-decoration: none;">Modding Tutorials</a> | 
+            <a href="#" style="color: var(--primary); text-decoration: none;">Contact</a>
+        </p>
+    </footer>
 
     <script>
-        // Simple script to display current date
-        document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
+        // Add scroll animation for mod cards
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe mod cards
+            document.querySelectorAll('.mod-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+
+            // YouTube subscriber count update (you can replace with real API)
+            const updateSubCount = () => {
+                // In reality, you would fetch this from YouTube API
+                document.querySelector('.stat-box:nth-child(2) .stat-number').textContent = '2.5K+';
+            };
+
+            // Update after 1 second (simulated)
+            setTimeout(updateSubCount, 1000);
         });
-        
-        // Optional: Add a console message
-        console.log('Welcome to my GitHub Pages site!');
     </script>
 </body>
 </html>
